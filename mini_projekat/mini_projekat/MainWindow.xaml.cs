@@ -23,6 +23,12 @@ namespace mini_projekat
         public MainWindow()
         {
             InitializeComponent();
+
+        }
+
+        private void batn(object sender, RoutedEventArgs e)
+        {
+            APIController.GetCryptoData("CRYPTO_INTRADAY", "ETH", "USD", "5min");
         }
     }
 }

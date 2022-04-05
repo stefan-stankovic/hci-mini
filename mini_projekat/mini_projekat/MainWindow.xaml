@@ -6,12 +6,15 @@
         xmlns:local="clr-namespace:mini_projekat"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
+    <Grid Margin="0,0,0,-2">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0*"/>
-            <ColumnDefinition Width="11*"/>
-            <ColumnDefinition Width="89*"/>
+            <ColumnDefinition Width="88*"/>
+            <ColumnDefinition Width="246*"/>
+            <ColumnDefinition Width="211*"/>
+            <ColumnDefinition Width="256*"/>
         </Grid.ColumnDefinitions>
+        <Button Click="batn" Grid.Column="2" Content="Button" HorizontalAlignment="Left" Margin="192,168,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="54" Width="159"/>
 
     </Grid>
 </Window>
