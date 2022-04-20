@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace mini_projekat {
     internal class TableDataSet {
 
-        public TableDataSet(List<ComboData> comboData) { 
+        public TableDataSet() { 
         }
     }
 }

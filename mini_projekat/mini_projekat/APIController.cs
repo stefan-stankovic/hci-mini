@@ -18,6 +18,6 @@ namespace mini_projekat
             using (WebClient client = new()) {
                 return client.DownloadString(queryUri);
             }
-        }
+        }   
     }
 }

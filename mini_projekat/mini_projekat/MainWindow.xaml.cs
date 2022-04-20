@@ -6,8 +6,8 @@ namespace mini_projekat {
 
         private bool isChartOn = true;
 
-        private ChartDataSet chartDataSet;
-        private TableDataSet tableDataSet;
+        private ChartDataSet? chartDataSet;
+        private TableDataSet? tableDataSet;
         
         public MainWindow() {
             InitializeComponent();
@@ -68,11 +68,16 @@ namespace mini_projekat {
 
         }
 
-        private void batn(object sender, RoutedEventArgs e)
-        {
-            APIController.GetCryptoData("CRYPTO_INTRADAY", "ETH", "USD", "5min");
+        private void exitAppBtn() {
+            Application.Current.Shutdown();
         }
+
+        private string callAPI() {
+            return APIController.GetCryptoData("CRYPTO_INTRADAY", "ETH", "USD", "5min");
+        }
+
     }
+
     public class ComboData {
         public string? Id { get; set; }
         public string? Value { get; set; }

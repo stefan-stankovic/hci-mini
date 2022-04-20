@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace mini_projekat {
     internal class ChartDataSet {
 
-        public ChartDataSet(List<ComboData> comboData) {
+        public ChartDataSet() {
             
         }
     }
