@@ -3,6 +3,12 @@ using System.Windows;
 
 namespace mini_projekat {
     public partial class MainWindow : Window {
+
+        private bool isChartOn = true;
+
+        private ChartDataSet chartDataSet;
+        private TableDataSet tableDataSet;
+        
         public MainWindow() {
             InitializeComponent();
             ComboBoxSetup();
@@ -21,18 +27,18 @@ namespace mini_projekat {
         private void SetUpMarketComboBox(string[] fileLines) {
             prepareComboData(fileLines);
 /*
-            marketComboBox.ItemsSource = ListData;
-            marketComboBox.DisplayMemberPath = "Value";
-            marketComboBox.SelectedValuePath = "Id";
+            marketCurrComboBox.ItemsSource = ListData;
+            marketCurrComboBox.DisplayMemberPath = "Value";
+            marketCurrComboBox.SelectedValuePath = "Id";
 */
         }
 
         private void SetUpCurrencyComboBox(string[] fileLines) {
             prepareComboData(fileLines);
 /*
-            currencyComboBox.ItemsSource = ListData;
-            currencyComboBox.DisplayMemberPath = "Value";
-            currencyComboBox.SelectedValuePath = "Id";
+            cryptoCurrComboBox.ItemsSource = ListData;
+            cryptoCurrComboBox.DisplayMemberPath = "Value";
+            cryptoCurrComboBox.SelectedValuePath = "Id";
 */
         }
 
@@ -48,6 +54,20 @@ namespace mini_projekat {
             return listData;
         }
 
+        private void showChartBtn(object sender, RoutedEventArgs e) {
+            isChartOn = true;
+        }
+
+        private void showTableBtn(object sender, RoutedEventArgs e) {
+            isChartOn = false;
+        }
+
+        private void submitFormBtn(object sender, RoutedEventArgs e) {
+            chartDataSet = new ChartDataSet();
+            tableDataSet = new TableDataSet();
+
+        }
+
         private void batn(object sender, RoutedEventArgs e)
         {
             APIController.GetCryptoData("CRYPTO_INTRADAY", "ETH", "USD", "5min");
@@ -57,4 +77,5 @@ namespace mini_projekat {
         public string? Id { get; set; }
         public string? Value { get; set; }
     }
+
 }
