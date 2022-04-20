@@ -21,7 +21,7 @@ namespace mini_projekat
                 );
 
             using (WebClient client = new()) {
-                using (StreamWriter writer = new StreamWriter(@"D:\Projects\c#\WPF_Proj\hci-mini\mini_projekat\mini_projekat\api_data.json")) {
+                using (StreamWriter writer = new StreamWriter(@"C:\Users\marko\Desktop\VI semestar\ICR\mini_projekat\hci-mini\mini_projekat\mini_projekat\api_data.json")) {
                     writer.Write(client.DownloadString(queryUri));
                 }
             }
