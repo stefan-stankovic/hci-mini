@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace mini_projekat {
     internal class TableDataSet {
+        private StructuredAPIData apiData;
 
-        public TableDataSet() { 
+        public TableDataSet(StructuredAPIData apiData) {
+            this.apiData = apiData;
         }
     }
 }

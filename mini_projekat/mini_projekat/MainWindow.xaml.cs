@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows;
+using System.Linq;
 
 namespace mini_projekat {
     public partial class MainWindow : Window {
@@ -9,7 +10,7 @@ namespace mini_projekat {
 
         private ChartDataSet? chartDataSet;
         private TableDataSet? tableDataSet;
-        private StructuredAPIData apiData;
+        private StructuredAPIData? apiData;
 
         private string cryptCurr = "";
         private string marketCurr = "";
@@ -20,13 +21,6 @@ namespace mini_projekat {
         public MainWindow() {
             InitializeComponent();
             ComboBoxSetup();
-            apiData = new StructuredAPIData(callAPI());
-            chartDataSet = new ChartDataSet(apiData);
-
-            double[] dataX = new double[] { 1, 2, 3, 4, 5 };
-            double[] dataY = new double[] { 1, 4, 9, 16, 25 };
-            WpfPlot1.Plot.AddScatter(dataX, dataY);
-            WpfPlot1.Refresh();
         }
 
         private void ComboBoxSetup() {
@@ -73,11 +67,17 @@ namespace mini_projekat {
         }
 
         private void submitFormBtn(object sender, RoutedEventArgs e) {
-            //chartDataSet = new ChartDataSet();
-            tableDataSet = new TableDataSet();
-
+            apiData = new StructuredAPIData(callAPI());
+            chartDataSet = new ChartDataSet(apiData);
+            tableDataSet = new TableDataSet(apiData);
+            WpfPlot1.Plot.XAxis.DateTimeFormat(true);
+            WpfPlot1.Plot.AddScatter(
+                    chartDataSet.getAxisX().Select(x => x.ToOADate()).ToArray(), 
+                    chartDataSet.getAxisY("close").ToArray()
+                );
+            WpfPlot1.Refresh();
         }
-
+        
         private void exitAppBtn() {
             Application.Current.Shutdown();
         }
@@ -86,7 +86,7 @@ namespace mini_projekat {
             return APIController.GetCryptoData("DIGITAL_CURRENCY_DAILY", "ETH", "USD", null);
         }
 
-        private void batn(object sender, RoutedEventArgs e) { }
+        private void batn(object sender, RoutedEventArgs e) { submitFormBtn(sender, e); }
     }
 
     public class ComboData {

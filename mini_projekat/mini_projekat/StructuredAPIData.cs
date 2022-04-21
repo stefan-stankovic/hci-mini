@@ -4,11 +4,11 @@ using JsonSerializer = System.Text.Json.JsonSerializer;
 
 namespace mini_projekat {
     internal class StructuredAPIData {
-        private List<DateTime> dateTimeList;
-        private List<double> openValues;
-        private List<double> closeValues;
-        private List<double> highValues;
-        private List<double> lowValues;
+        private List<DateTime> dateTimeList { get; set; }
+        private List<double> openValues { get; set; }
+        private List<double> closeValues { get; set; }
+        private List<double> highValues { get; set; }
+        private List<double> lowValues { get; set; }
 
         public StructuredAPIData(Dictionary<string, dynamic> apiData) {
             dateTimeList = new List<DateTime>();
@@ -49,6 +49,26 @@ namespace mini_projekat {
                     break;  // Zato sto je ovo poslednji value type koji treba da obradi pa da ne bi bezveze iterirao nasilno zavrsava
                 }
             }
+        }
+
+        public List<DateTime> getDateTimeList() {
+            return dateTimeList;
+        }
+
+        public List<double> getOpenValues() {
+            return openValues;
+        }
+
+        public List<double> getCloseValues() {
+            return closeValues;
+        }
+
+        public List<double> getHighValues() {
+            return highValues;
+        }
+
+        public List<double> getLowValues() {
+            return lowValues;
         }
     }
 
