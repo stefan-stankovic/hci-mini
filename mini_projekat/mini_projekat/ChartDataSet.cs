@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace mini_projekat {
     internal class ChartDataSet {
-
-        public ChartDataSet() {
-            
+        private StructuredAPIData apiData;
+        public ChartDataSet(StructuredAPIData apiData) {
+            this.apiData = apiData;
         }
     }
 }

@@ -1,17 +1,27 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 
 namespace mini_projekat {
     public partial class MainWindow : Window {
 
-        private bool isChartOn = true;
+        private bool isChartOn = true;  // true - prikazuje se CHART ; false - prikazuje se TABLE
 
         private ChartDataSet? chartDataSet;
         private TableDataSet? tableDataSet;
-        
+        private StructuredAPIData apiData;
+
+        private string cryptCurr = "";
+        private string marketCurr = "";
+        private string interval = "";
+        private string dataType = "";
+
+
         public MainWindow() {
             InitializeComponent();
             ComboBoxSetup();
+            apiData = new StructuredAPIData(callAPI());
+            chartDataSet = new ChartDataSet(apiData);
 
             double[] dataX = new double[] { 1, 2, 3, 4, 5 };
             double[] dataY = new double[] { 1, 4, 9, 16, 25 };
@@ -63,7 +73,7 @@ namespace mini_projekat {
         }
 
         private void submitFormBtn(object sender, RoutedEventArgs e) {
-            chartDataSet = new ChartDataSet();
+            //chartDataSet = new ChartDataSet();
             tableDataSet = new TableDataSet();
 
         }
@@ -72,10 +82,11 @@ namespace mini_projekat {
             Application.Current.Shutdown();
         }
 
-        private string callAPI() {
-            return APIController.GetCryptoData("CRYPTO_INTRADAY", "ETH", "USD", "5min");
+        private Dictionary<string, dynamic> callAPI() {
+            return APIController.GetCryptoData("DIGITAL_CURRENCY_DAILY", "ETH", "USD", null);
         }
 
+        private void batn(object sender, RoutedEventArgs e) { }
     }
 
     public class ComboData {
