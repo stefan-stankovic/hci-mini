@@ -108,7 +108,7 @@ namespace mini_projekat {
             WpfPlot1.Refresh();
 */        }
 
-        private void exitAppBtn() {
+        private void exitAppBtn(object sender, RoutedEventArgs e) {
             Application.Current.Shutdown();
         }
 
