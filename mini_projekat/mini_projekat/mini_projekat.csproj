@@ -14,4 +14,8 @@
     <PackageReference Include="ScottPlot.WPF" Version="4.1.41" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Font\" />
+  </ItemGroup>
+
 </Project>

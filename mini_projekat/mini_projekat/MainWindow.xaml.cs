@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ScottPlot;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,7 +27,11 @@ namespace mini_projekat
             double[] dataX = new double[] { 1, 2, 3, 4, 5 };
             double[] dataY = new double[] { 1, 4, 9, 16, 25 };
             WpfPlot1.Plot.AddScatter(dataX, dataY);
+            WpfPlot1.plt.XLabel("Interval");
+            WpfPlot1.plt.YLabel("Market Currency Value");
+            WpfPlot1.plt.Style(ScottPlot.Style.Blue3);
             WpfPlot1.Refresh();
+
 
         }
 
