@@ -9,6 +9,7 @@ namespace mini_projekat {
         private List<double> closeValues { get; set; }
         private List<double> highValues { get; set; }
         private List<double> lowValues { get; set; }
+        private int dataSetLength { get; set; }
 
         public StructuredAPIData(Dictionary<string, dynamic> apiData) {
             dateTimeList = new List<DateTime>();
@@ -17,7 +18,7 @@ namespace mini_projekat {
             highValues = new List<double>();
             lowValues = new List<double>();
             parseDataValues(extractDataValues(apiData));
-
+            dataSetLength = dateTimeList.Count;
         }
 
         private dynamic extractDataValues(Dictionary<string, dynamic> data) {
@@ -69,6 +70,10 @@ namespace mini_projekat {
 
         public List<double> getLowValues() {
             return lowValues;
+        }
+
+        public int getDataSetLength() {
+            return dataSetLength;
         }
     }
 

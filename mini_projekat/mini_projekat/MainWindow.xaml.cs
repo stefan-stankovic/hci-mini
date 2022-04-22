@@ -21,6 +21,8 @@ namespace mini_projekat {
         public MainWindow() {
             InitializeComponent();
             ComboBoxSetup();
+            table.Visibility = Visibility.Hidden;
+
         }
 
         private void ComboBoxSetup() {
@@ -66,18 +68,41 @@ namespace mini_projekat {
             isChartOn = false;
         }
 
+        private void nextPageBtn(object sender, RoutedEventArgs e) {
+            try {
+                table.ItemsSource = tableDataSet?.nextPage("USD", "ETH", "open");
+            } catch (InvalidOperationException) { }
+        }
+
+        private void previousPageBtn(object sender, RoutedEventArgs e) {
+            try {
+                table.ItemsSource = tableDataSet?.previousPage("USD", "ETH", "open");
+            } catch (InvalidOperationException) { }
+        }
+
         private void submitFormBtn(object sender, RoutedEventArgs e) {
+            if (WpfPlot1.Visibility == Visibility.Hidden) {
+                WpfPlot1.Visibility = Visibility.Visible;
+                table.Visibility = Visibility.Hidden;
+            }
+            else {
+                WpfPlot1.Visibility = Visibility.Hidden;
+                table.Visibility = Visibility.Visible;
+            }
+
             apiData = new StructuredAPIData(callAPI());
-            chartDataSet = new ChartDataSet(apiData);
             tableDataSet = new TableDataSet(apiData);
+            table.ItemsSource = tableDataSet.getTableRows("USD", "ETH", "open");
+/*
+            chartDataSet = new ChartDataSet(apiData);
             WpfPlot1.Plot.XAxis.DateTimeFormat(true);
             WpfPlot1.Plot.AddScatter(
-                    chartDataSet.getAxisX().Select(x => x.ToOADate()).ToArray(), 
+                    chartDataSet.getAxisX().Select(x => x.ToOADate()).ToArray(),
                     chartDataSet.getAxisY("close").ToArray()
                 );
             WpfPlot1.Refresh();
-        }
-        
+*/        }
+
         private void exitAppBtn() {
             Application.Current.Shutdown();
         }
