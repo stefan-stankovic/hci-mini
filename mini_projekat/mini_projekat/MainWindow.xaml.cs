@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ScottPlot;
+using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Linq;
@@ -20,9 +21,13 @@ namespace mini_projekat {
 
         public MainWindow() {
             InitializeComponent();
+          
+            WpfPlot1.plt.XLabel("Interval");
+            WpfPlot1.plt.YLabel("Market Currency Value");
+            WpfPlot1.plt.Style(ScottPlot.Style.Blue3);
+            WpfPlot1.Refresh();
             ComboBoxSetup();
             table.Visibility = Visibility.Hidden;
-
         }
 
         private void ComboBoxSetup() {
