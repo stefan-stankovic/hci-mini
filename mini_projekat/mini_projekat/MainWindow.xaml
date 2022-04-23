@@ -13,7 +13,7 @@
 
         Background="Transparent"
         >
-    
+
     <Border Background="#181735"
             CornerRadius="20" >
         <Grid>
@@ -150,10 +150,10 @@
                             <ContentPresenter VerticalAlignment="Center"
                                                 HorizontalAlignment="Center"/>
                         </Border>
-                                    
+
                     </ControlTemplate>
                 </Button.Template>
-                    
+
             </Button>
             <Button Content="Еxit"
                     Grid.Row="5" 
@@ -190,50 +190,72 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            
+
             <ComboBox x:Name="cryptoCurrComboBox"
+                        FontWeight="Bold" 
+                        FontSize="16" 
+                        IsReadOnly="True"
                         Grid.Row="2"
                         Grid.Column="0"
                         Style="{StaticResource ComboBoxFlatStyle}" 
                         HorizontalAlignment="Stretch" 
                         Height="36" 
                         VerticalAlignment="Bottom" 
-                />
+            />
             <ComboBox x:Name="marketCurrComboBox" 
+                        FontWeight="Bold" 
+                        FontSize="16" 
+                        IsReadOnly="True"
                         Grid.Row="2"
                         Grid.Column="1"
                         Style="{StaticResource ComboBoxFlatStyle}" 
                         HorizontalAlignment="Stretch" 
                         Height="36" 
                         VerticalAlignment="Bottom"
-                />
+             />
             <ComboBox x:Name="intervalComboBox"
+                        FontWeight="Bold" 
+                        FontSize="16" 
+                        IsReadOnly="True"
                         Grid.Row="2"
                         Grid.Column="2"
                         Style="{StaticResource ComboBoxFlatStyle}" 
                         HorizontalAlignment="Stretch" 
                         Height="36" 
                         VerticalAlignment="Bottom">
-                <ComboBoxItem Content="Alice"></ComboBoxItem>
-                <ComboBoxItem Content="Bob"></ComboBoxItem>
+                <ComboBoxItem Content="None Selected" IsSelected="True"></ComboBoxItem>
+                <ComboBoxItem Content="1 MONTH" Tag="month"></ComboBoxItem>
+                <ComboBoxItem Content="1 WEEK" Tag="week"></ComboBoxItem>
+                <ComboBoxItem Content="1 DAY" Tag="day"></ComboBoxItem>
+                <ComboBoxItem Content="60 MINUTES" Tag="60"></ComboBoxItem>
+                <ComboBoxItem Content="30 MINUTES" Tag="30"></ComboBoxItem>
+                <ComboBoxItem Content="15 MINUTES" Tag="15"></ComboBoxItem>
+                <ComboBoxItem Content="5 MINUTES" Tag="5"></ComboBoxItem>
+                <ComboBoxItem Content="1 MINUTE" Tag="1"></ComboBoxItem>
             </ComboBox>
             <ComboBox x:Name="valuTypeComboBox"
+                        FontWeight="Bold" 
+                        FontSize="16" 
+                        IsReadOnly="True"
                         Grid.Row="2"
                         Grid.Column="3"
                         Style="{StaticResource ComboBoxFlatStyle}" 
                         HorizontalAlignment="Stretch" 
                         Height="36" 
                         VerticalAlignment="Bottom">
-                <ComboBoxItem Content="Alice"></ComboBoxItem>
-                <ComboBoxItem Content="Bob"></ComboBoxItem>
+                <ComboBoxItem Content="None Selected" IsSelected="True"></ComboBoxItem>
+                <ComboBoxItem Content="OPEN"></ComboBoxItem>
+                <ComboBoxItem Content="CLOSE"></ComboBoxItem>
+                <ComboBoxItem Content="HIGH"></ComboBoxItem>
+                <ComboBoxItem Content="LOW"></ComboBoxItem>
             </ComboBox>
-            <Label Foreground="#FF4C70" Content="Crypto Currency:" FontWeight="Bold"
+            <Label Foreground="#FF4C70" Content="Crypto Currency:" FontWeight="Bold" FontSize="15"
                    Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" />
-            <Label Foreground="#FF4C70" Content="Market Currency:" FontWeight="Bold"
+            <Label Foreground="#FF4C70" Content="Market Currency:" FontWeight="Bold" FontSize="15"
                    Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" />
-            <Label Foreground="#FF4C70" Content="Interval:" FontWeight="Bold"
+            <Label Foreground="#FF4C70" Content="Interval:" FontWeight="Bold" FontSize="15"
                    Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" />
-            <Label Foreground="#FF4C70" Content="Value type:" FontWeight="Bold"
+            <Label Foreground="#FF4C70" Content="Value type:" FontWeight="Bold" FontSize="15"
                    Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" />
 
             <WpfPlot x:Name="WpfPlot1" 
@@ -252,31 +274,33 @@
                 IsReadOnly ="True"
                 AutoGenerateColumns="False" Background="#FF2F2B55"
             >
-                    <DataGrid.Resources>
-                        <Style TargetType="{x:Type DataGridColumnHeader}">
-                            <Setter Property="Background" Value="#FF1E1A42"/>
-                            <Setter Property="BorderThickness" Value="1,1,1,2"/>
-                            <Setter Property="BorderBrush" Value="#FFD74668"/>
-                            <Setter Property="Foreground" Value="#FFD74668"/>
-                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="#FF1E1A42"/>
+                        <Setter Property="BorderThickness" Value="1,1,1,2"/>
+                        <Setter Property="BorderBrush" Value="#FFD74668"/>
+                        <Setter Property="Foreground" Value="#FFD74668"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
 
 
-                        </Style>
-                    </DataGrid.Resources>
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="ID" MinWidth="40" Width="1*" Binding="{Binding ID}"/>
-                        <DataGridTextColumn Header="MarketCurrency" MinWidth="110" Width="2*" Binding="{Binding MarketCurrency}"/>
-                        <DataGridTextColumn Header="CryptoCurrency" MinWidth="110" Width="2*" Binding="{Binding CryptoCurrency}"/>
-                        <DataGridTextColumn Header="MarketValue" MinWidth="110" Width="4*" Binding="{Binding MarketValue}"/>
-                        <DataGridTextColumn Header="DateAndTime" MinWidth="110" Width="5*" Binding="{Binding DateAndTime}"/>
-                    </DataGrid.Columns>
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" MinWidth="40" Width="1*" Binding="{Binding ID}"/>
+                    <DataGridTextColumn Header="MarketCurrency" MinWidth="110" Width="2*" Binding="{Binding MarketCurrency}"/>
+                    <DataGridTextColumn Header="CryptoCurrency" MinWidth="110" Width="2*" Binding="{Binding CryptoCurrency}"/>
+                    <DataGridTextColumn Header="MarketValue" MinWidth="110" Width="4*" Binding="{Binding MarketValue}"/>
+                    <DataGridTextColumn Header="DateAndTime" MinWidth="110" Width="5*" Binding="{Binding DateAndTime}"/>
+                </DataGrid.Columns>
             </DataGrid>
-            <Button Content="Previous Page"
+            <Button x:Name="prevPageButton"
+                        Content="Previous Page"
                         Foreground="White"
                         FontSize="14"
                         FontWeight="Medium"
                         Grid.Row="4"
                         Grid.Column="0"
+                        Click="previousPageBtn"
                 >
                 <Button.Style>
                     <Style TargetType="Button">
@@ -309,12 +333,14 @@
 
             </Button>
 
-            <Button Content="Next Page"
+            <Button x:Name="nextPageButton"
+                        Content="Next Page"
                         Foreground="White"
                         FontSize="14"
                         FontWeight="Medium"
                         Grid.Row="4"
                         Grid.Column="2"
+                        Click="nextPageBtn"
             >
                 <Button.Style>
                     <Style TargetType="Button">
@@ -345,17 +371,55 @@
                     </ControlTemplate>
                 </Button.Template>
             </Button>
-            <Label Grid.Row="4" 
+            <Label x:Name="pageLabel"
+                   Grid.Row="4" 
                    Grid.Column="1" 
                    FontSize="17" 
-                   Content="Page" 
                    VerticalAlignment="Stretch" 
                    HorizontalAlignment="Stretch" 
                    HorizontalContentAlignment="Center"
                    VerticalContentAlignment="Center"
                    Foreground="#FF4C70"
             />
+
+            <Popup Name="apiErrorPopUp" Placement="Center" Width="400" Height="150" >
+                <Border BorderBrush="#FF4C70" BorderThickness="2" CornerRadius="4">
+                    <StackPanel Background="#3C1366">
+                        <TextBlock TextAlignment="Center" Margin="10 10 10 10" HorizontalAlignment="Center" Width="320" Height="auto" TextWrapping="WrapWithOverflow" FontSize="17" FontWeight="Bold" Foreground="#FF4C70">
+                            API wasn't able to fetch the data for the provided input, please try another crypto currency.
+                        </TextBlock>
+                        <Button Click="closePopUp" Margin="0 5 0 10" HorizontalAlignment="Center" Width="100" Foreground="White">
+                            X
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="TextElement.FontFamily" Value="#Fonts/#Dosis"/>
+                                    <Setter Property="Background"  Value="#39385D"/>
+                                    <Setter Property="Cursor" Value="Hand"/>
+
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#3A3952"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Margin="20 5 20 5" 
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    CornerRadius="12"
+                                    Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center"
+                                                    HorizontalAlignment="Center"/>
+                                    </Border>
+
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
+                </Border>
+            </Popup>
         </Grid>
-        
     </Border>
 </Window>
