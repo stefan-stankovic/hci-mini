@@ -5,16 +5,421 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:mini_projekat"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid Margin="0,0,0,-2">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="0*"/>
-            <ColumnDefinition Width="88*"/>
-            <ColumnDefinition Width="246*"/>
-            <ColumnDefinition Width="211*"/>
-            <ColumnDefinition Width="256*"/>
-        </Grid.ColumnDefinitions>
-        <Button Click="batn" Grid.Column="2" Content="Button" HorizontalAlignment="Left" Margin="192,168,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="54" Width="159"/>
-        <WpfPlot Grid.Column="2" Name="WpfPlot1" />
-    </Grid>
+        Title="MainWindow" 
+        Height="700"
+        Width="1080"
+        MinWidth="1080"
+        MinHeight="700"
+
+        Background="Transparent"
+        >
+
+    <Border Background="#181735"
+            CornerRadius="20" >
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45*"/>
+                <RowDefinition Height="25*"/>
+                <RowDefinition Height="35*"/>
+                <RowDefinition Height="390*"/>
+                <RowDefinition Height="40*"/>
+                <RowDefinition Height="40*"/>
+            </Grid.RowDefinitions>
+
+            <RadioButton Content="GRAPH VIEW"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Center"
+                    VerticalAlignment="Stretch"
+                    VerticalContentAlignment="Center"
+                    BorderBrush="#181735"
+                    Foreground="#FF4C70"
+                    FontWeight="Bold"
+                    FontSize="14"
+                    Click="showChartBtn"
+                    IsChecked="True"
+            >
+                <RadioButton.Style>
+                    <Style TargetType="RadioButton">
+                        <Setter Property="TextElement.FontFamily" Value="#Fonts/#Dosis"/>
+                        <Setter Property="Background"  Value="#181735"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+
+                        <Style.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Background" Value="#1f1e46"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </RadioButton.Style>
+                <RadioButton.Template>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border Margin="20 5 20 5"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                CornerRadius="12"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center"
+                                                HorizontalAlignment="Center"/>
+                        </Border>
+
+                    </ControlTemplate>
+                </RadioButton.Template>
+            </RadioButton>
+
+
+
+            <RadioButton Content="TABLE VIEW"
+                    Grid.Row="0"
+                    Grid.Column="2"
+                    Grid.ColumnSpan="2"
+                    HorizontalAlignment="Stretch"
+                    HorizontalContentAlignment="Center"
+                    VerticalAlignment="Stretch"
+                    VerticalContentAlignment="Center"
+                    Foreground="#FF4C70"
+                    BorderBrush="#181735"
+                    FontWeight="Bold"
+                    FontSize="14"
+                    Click="showTableBtn"
+            >
+                <RadioButton.Style>
+                    <Style TargetType="RadioButton">
+                        <Setter Property="TextElement.FontFamily" Value="#Fonts/#Dosis"/>
+                        <Setter Property="Background"  Value="#181735"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+
+                        <Style.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Background" Value="#1f1e46"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </RadioButton.Style>
+                <RadioButton.Template>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border Margin="20 5 20 5"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                CornerRadius="12"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center"
+                                                HorizontalAlignment="Center"/>
+                        </Border>
+
+                    </ControlTemplate>
+                </RadioButton.Template>
+            </RadioButton>
+
+            <Button Content="Apply"
+                    Grid.Row="4" 
+                    Grid.Column="3"
+                    Foreground="White"
+                    FontSize="14"
+                    FontWeight="Medium"
+                    Click="submitFormBtn"
+                    >
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="TextElement.FontFamily" Value="#Fonts/#Dosis"/>
+                        <Setter Property="Background"  Value="#FF4C70"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF1F4C"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Margin="20 5 20 5"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                CornerRadius="12"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center"
+                                                HorizontalAlignment="Center"/>
+                        </Border>
+
+                    </ControlTemplate>
+                </Button.Template>
+
+            </Button>
+            <Button Content="Еxit"
+                    Grid.Row="5" 
+                    Grid.Column="3"
+                    Foreground="White"
+                    FontSize="14"
+                    FontWeight="Medium"
+                    Click="exitAppBtn"
+                    >
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="TextElement.FontFamily" Value="#Fonts/#Dosis"/>
+                        <Setter Property="Background"  Value="#39385D"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#3A3952"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Margin="20 5 20 5" 
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                CornerRadius="12"
+                                Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center"
+                                                HorizontalAlignment="Center"/>
+                        </Border>
+
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+
+            <ComboBox x:Name="cryptoCurrComboBox"
+                        FontWeight="Bold" 
+                        FontSize="16" 
+                        IsReadOnly="True"
+                        Grid.Row="2"
+                        Grid.Column="0"
+                        Style="{StaticResource ComboBoxFlatStyle}" 
+                        HorizontalAlignment="Stretch" 
+                        Height="36" 
+                        VerticalAlignment="Bottom" 
+            />
+            <ComboBox x:Name="marketCurrComboBox" 
+                        FontWeight="Bold" 
+                        FontSize="16" 
+                        IsReadOnly="True"
+                        Grid.Row="2"
+                        Grid.Column="1"
+                        Style="{StaticResource ComboBoxFlatStyle}" 
+                        HorizontalAlignment="Stretch" 
+                        Height="36" 
+                        VerticalAlignment="Bottom"
+             />
+            <ComboBox x:Name="intervalComboBox"
+                        FontWeight="Bold" 
+                        FontSize="16" 
+                        IsReadOnly="True"
+                        Grid.Row="2"
+                        Grid.Column="2"
+                        Style="{StaticResource ComboBoxFlatStyle}" 
+                        HorizontalAlignment="Stretch" 
+                        Height="36" 
+                        VerticalAlignment="Bottom">
+                <ComboBoxItem Content="None Selected" IsSelected="True"></ComboBoxItem>
+                <ComboBoxItem Content="1 MONTH" Tag="month"></ComboBoxItem>
+                <ComboBoxItem Content="1 WEEK" Tag="week"></ComboBoxItem>
+                <ComboBoxItem Content="1 DAY" Tag="day"></ComboBoxItem>
+                <ComboBoxItem Content="60 MINUTES" Tag="60"></ComboBoxItem>
+                <ComboBoxItem Content="30 MINUTES" Tag="30"></ComboBoxItem>
+                <ComboBoxItem Content="15 MINUTES" Tag="15"></ComboBoxItem>
+                <ComboBoxItem Content="5 MINUTES" Tag="5"></ComboBoxItem>
+                <ComboBoxItem Content="1 MINUTE" Tag="1"></ComboBoxItem>
+            </ComboBox>
+            <ComboBox x:Name="valuTypeComboBox"
+                        FontWeight="Bold" 
+                        FontSize="16" 
+                        IsReadOnly="True"
+                        Grid.Row="2"
+                        Grid.Column="3"
+                        Style="{StaticResource ComboBoxFlatStyle}" 
+                        HorizontalAlignment="Stretch" 
+                        Height="36" 
+                        VerticalAlignment="Bottom">
+                <ComboBoxItem Content="None Selected" IsSelected="True"></ComboBoxItem>
+                <ComboBoxItem Content="OPEN"></ComboBoxItem>
+                <ComboBoxItem Content="CLOSE"></ComboBoxItem>
+                <ComboBoxItem Content="HIGH"></ComboBoxItem>
+                <ComboBoxItem Content="LOW"></ComboBoxItem>
+            </ComboBox>
+            <Label Foreground="#FF4C70" Content="Crypto Currency:" FontWeight="Bold" FontSize="15"
+                   Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" />
+            <Label Foreground="#FF4C70" Content="Market Currency:" FontWeight="Bold" FontSize="15"
+                   Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" />
+            <Label Foreground="#FF4C70" Content="Interval:" FontWeight="Bold" FontSize="15"
+                   Grid.Row="1" Grid.Column="2" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" />
+            <Label Foreground="#FF4C70" Content="Value type:" FontWeight="Bold" FontSize="15"
+                   Grid.Row="1" Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" />
+
+            <WpfPlot x:Name="WpfPlot1" 
+                     Grid.Row="3" 
+                     Grid.ColumnSpan="3" 
+                     Grid.RowSpan="1" 
+                     Margin="10,15,10,10" 
+                     Background="#FFB82C2C" 
+                     Foreground="#FFD9F31A"/>
+            <DataGrid 
+                Name="table" 
+                Grid.Row="3"
+                Grid.ColumnSpan="3" 
+                Margin="10,10,10,10" 
+                CanUserAddRows="False" 
+                IsReadOnly ="True"
+                AutoGenerateColumns="False" Background="#FF2F2B55"
+            >
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="#FF1E1A42"/>
+                        <Setter Property="BorderThickness" Value="1,1,1,2"/>
+                        <Setter Property="BorderBrush" Value="#FFD74668"/>
+                        <Setter Property="Foreground" Value="#FFD74668"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+
+
+                    </Style>
+                </DataGrid.Resources>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" MinWidth="40" Width="1*" Binding="{Binding ID}"/>
+                    <DataGridTextColumn Header="MarketCurrency" MinWidth="110" Width="2*" Binding="{Binding MarketCurrency}"/>
+                    <DataGridTextColumn Header="CryptoCurrency" MinWidth="110" Width="2*" Binding="{Binding CryptoCurrency}"/>
+                    <DataGridTextColumn Header="MarketValue" MinWidth="110" Width="4*" Binding="{Binding MarketValue}"/>
+                    <DataGridTextColumn Header="DateAndTime" MinWidth="110" Width="5*" Binding="{Binding DateAndTime}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button x:Name="prevPageButton"
+                        Content="Previous Page"
+                        Foreground="White"
+                        FontSize="14"
+                        FontWeight="Medium"
+                        Grid.Row="4"
+                        Grid.Column="0"
+                        Click="previousPageBtn"
+                >
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="TextElement.FontFamily" Value="#Fonts/#Dosis"/>
+                        <Setter Property="Background"  Value="#FF4C70"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+
+
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF1F4C"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Margin="60 5 60 5"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                CornerRadius="12"
+                                Background="{TemplateBinding Background}"
+                        >
+                            <ContentPresenter VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center"/>
+                        </Border>
+
+                    </ControlTemplate>
+                </Button.Template>
+
+            </Button>
+
+            <Button x:Name="nextPageButton"
+                        Content="Next Page"
+                        Foreground="White"
+                        FontSize="14"
+                        FontWeight="Medium"
+                        Grid.Row="4"
+                        Grid.Column="2"
+                        Click="nextPageBtn"
+            >
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="TextElement.FontFamily" Value="#Fonts/#Dosis"/>
+                        <Setter Property="Background"  Value="#FF4C70"/>
+                        <Setter Property="Cursor" Value="Hand"/>
+
+
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF1F4C"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border Margin="60 5 60 5"
+                                HorizontalAlignment="Stretch"
+                                VerticalAlignment="Stretch"
+                                CornerRadius="12"
+                                Background="{TemplateBinding Background}"
+                        >
+                            <ContentPresenter VerticalAlignment="Center"
+                                                  HorizontalAlignment="Center"/>
+                        </Border>
+
+                    </ControlTemplate>
+                </Button.Template>
+            </Button>
+            <Label x:Name="pageLabel"
+                   Grid.Row="4" 
+                   Grid.Column="1" 
+                   FontSize="17" 
+                   VerticalAlignment="Stretch" 
+                   HorizontalAlignment="Stretch" 
+                   HorizontalContentAlignment="Center"
+                   VerticalContentAlignment="Center"
+                   Foreground="#FF4C70"
+            />
+
+            <Popup Name="apiErrorPopUp" Placement="Center" Width="400" Height="150" >
+                <Border BorderBrush="#FF4C70" BorderThickness="2" CornerRadius="4">
+                    <StackPanel Background="#3C1366">
+                        <TextBlock TextAlignment="Center" Margin="10 10 10 10" HorizontalAlignment="Center" Width="320" Height="auto" TextWrapping="WrapWithOverflow" FontSize="17" FontWeight="Bold" Foreground="#FF4C70">
+                            API wasn't able to fetch the data for the provided input, please try another crypto currency.
+                        </TextBlock>
+                        <Button Click="closePopUp" Margin="0 5 0 10" HorizontalAlignment="Center" Width="100" Foreground="White">
+                            X
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="TextElement.FontFamily" Value="#Fonts/#Dosis"/>
+                                    <Setter Property="Background"  Value="#39385D"/>
+                                    <Setter Property="Cursor" Value="Hand"/>
+
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#3A3952"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Margin="20 5 20 5" 
+                                    HorizontalAlignment="Stretch"
+                                    VerticalAlignment="Stretch"
+                                    CornerRadius="12"
+                                    Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center"
+                                                    HorizontalAlignment="Center"/>
+                                    </Border>
+
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
+                </Border>
+            </Popup>
+        </Grid>
+    </Border>
 </Window>
