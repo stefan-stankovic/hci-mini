@@ -5,12 +5,12 @@ namespace mini_projekat {
     internal class TableDataSet {
         private StructuredAPIData apiData;
 
-        private const int NUM_OF_ROWS= 20;
+        private const int NUM_OF_ROWS = 30;
 
         private int dataSetLength;
 
-        private int numOfPages;
-        private int currentPage;
+        public int numOfPages;
+        public int currentPage;
 
         public TableDataSet(StructuredAPIData apiData) {
             this.apiData = apiData;
@@ -22,14 +22,14 @@ namespace mini_projekat {
 
             List<TableRowData> rows = new();
             int start = (currentPage - 1) * NUM_OF_ROWS + 1;
-            int end = currentPage == numOfPages ? dataSetLength % NUM_OF_ROWS : start + 20;
+            int end = currentPage == numOfPages ? start + dataSetLength % NUM_OF_ROWS : start + NUM_OF_ROWS;
             for (int ind = start; ind < end; ind++)
                 rows.Add(new TableRowData() {
                         ID = ind,
                         MarketCurrency = marketCurr,
                         CryptoCurrency = cryptoCurr,
-                        MarketValue = values[ind],
-                        DateAndTime = apiData.getDateTimeList()[ind]
+                        MarketValue = values[ind-1],
+                        DateAndTime = apiData.getDateTimeList()[ind-1]
                     }
                 );
             return rows;
@@ -51,7 +51,7 @@ namespace mini_projekat {
         private void setPagingSettings() {
             dataSetLength = apiData.getDataSetLength();
 
-            double pages = (dataSetLength / NUM_OF_ROWS);
+            double pages = (double)dataSetLength / (double)NUM_OF_ROWS;
 
             numOfPages = pages % 1 != 0 ? ((int)pages) + 1 : (int)pages;
             currentPage = 1;
